@@ -1,0 +1,152 @@
+#服务器菜单标题
+Title: '&e&l服务器&b&l菜单'
+#绑定
+Bindings:
+  #绑定命令
+  Commands:
+    - 'menu'
+  #绑定开启菜单的物品
+  Items:
+    - 'material:stick'
+
+#菜单样子（箱子菜单）
+Shape:
+- 'X#######X'
+- '#ABCDEFG#'
+- 'X#######X'
+
+#开关菜单时的音效
+Events:
+  Open:
+    - 'sound: BLOCK_IRON_DOOR_OPEN-1-2'
+  Close:
+    - 'sound: BLOCK_IRON_DOOR_CLOSE-1-2'
+
+
+#按钮
+Buttons:
+  #不放东西的玻璃板（绿）
+  '#':
+    display:
+      material: green stain glass pane
+      name: '&e&l我是&a&l边框'  
+      lore: 
+      - '点击&c红色&r退出'
+      - '按&aECS&7退出或者按&aE'
+  #退出
+  'X':
+    display:
+      material: red stain glass pane 
+      name: '点击&b退出'      
+    actions:
+      all:            
+        - 'close'
+        - 'tell: &7点击&a木棍&7可以再次打开&e菜单'
+  
+  #玩家信息
+  'A':
+    update: 15
+    display:
+      mats: '<head:%player_name%>'
+      name:
+      - '&e&l你好&7,&3&l%player_name%'
+      - '&e&l你好&7,&b&l%player_name%'
+      lore:
+      - '&r个人信息'
+      - '&3名字: &e%player_name%'
+      - '&3生命: &a%player_health_rounded%'
+      - '&3坐标: &a%player_x%,%player_y%,%player_z%'
+      - '&3朝向: &a%player_direction%'
+      - '&3群系: &a%player_biome%'
+      - '&3延迟: &a%player_ping%'
+      - '&c点击查看指令帮助'
+      shiny: true
+      #主城坐标稍后加
+      #- '&r主城: '
+    actions:
+      all:
+        - 'trplugins.menu help'
+
+  #银行
+  'B':
+    update: 10
+    display:
+      mats: 'diamond'
+      name: 
+      - '&6银&e行'
+      - '&e银&6行'
+      lore:
+      - ''
+      - '&3存钱&7&&3取钱'
+      - '&b➥左键存钱'
+      - '&b➥右键取钱'
+      - '&7你有&6金币: %checkItem_amount_mat:gold_nugget,nameequals:&6金币%'
+      shiny: true
+    actions:
+      left:
+        - 'sound: ENTITY_ARROW_HIT_PLAYER-1-0'
+        - 'trplugins.menu: deposit'
+      right:
+        - 'sound: ENTITY_ARROW_HIT_PLAYER-1-1'
+        - 'trplugins.menu: withdraw'
+
+  #每日委托
+  'C':
+    update: 10
+    display:
+      mats: 'enchanting table'
+      name:
+      - '&a每&e日&c委&6托'
+      - '&6每&a日&e委&c托'
+      - '&c每&6日&a委&e托'
+      - '&e每&c日&6委&a托'
+      lore:
+      - '&b完成任务&a领取奖励'
+      - '&b点击打开&a任务界面'
+      shiny: true
+    actions:
+      all:
+        - 'trplugins.menu: tasks'
+
+  #抽奖
+  'D':
+    update: 15
+    display:
+      mats: 'firework_rocket'
+      name: 
+      - '&e抽&b奖'
+      - '&b抽&e奖'
+      lore: '&r点击进入&b抽奖界面'
+      shiny: true
+    actions:
+      all:
+        - 'trplugins.menu: choujiang'
+        - 'tell: &c暂未开启:)'
+  
+  #每日奖励
+  'E':
+    update: 15
+    display:
+      mats: 'ender_chest'
+      name:
+      - '&7领取&a每日/&b每周/&6每月&c奖励'
+      - '&7领取&6每日/&a每周/&b每月&c奖励'
+      - '&7领取&b每日/&6每周/&a每月&c奖励'
+      lore: '&7点击进入&b奖励提示界面'
+    actions:
+      all:
+        - 'close'
+        - 'tell: &7暂时只支持输入&a/reward(s)&7自行领取'
+
+  
+
+
+  
+ 
+
+  
+
+
+  
+
+  

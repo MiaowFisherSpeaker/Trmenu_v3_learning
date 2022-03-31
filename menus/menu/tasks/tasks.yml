@@ -1,0 +1,278 @@
+#每日任务菜单标题
+Title: '&e&l每日&b&l任务'
+#绑定
+Bindings:
+  #绑定命令
+  Commands:
+    - '任务'
+
+#开关菜单时的音效
+Events:
+  Open:
+    - 'sound: BLOCK_IRON_DOOR_OPEN-1-2'
+  Close:
+    - 'sound: BLOCK_IRON_DOOR_CLOSE-1-2'
+
+#菜单样子（箱子菜单）
+Shape:
+- 'X###M###X'
+- 'Y`A1`Y`B1`Y`C1`Y`D1`Y'
+- 'Y`A2`Y`B2`Y`C2`Y`D2`Y'
+- 'Y`A3`Y`B3`Y`C3`Y`D3`Y'
+- 'X###M###X'
+#按钮
+Buttons:
+  #&Y不放东西的玻璃板（绿）
+  '#':
+    display:
+      material: green stain glass pane
+      name: '&e&l我是&a&l边框'  
+      lore: 
+      - '点击&c红色&r退出'
+      - '按&aECS&7退出或者按&aE'
+  'Y':
+    display:
+      material: gray stain glass pane
+      name: '&e&l我是&a&l边框'  
+      lore: 
+      - '点击&c红色&r退出'
+      - '按&aECS&7退出或者按&aE'
+
+  
+  #退出
+  'X':
+    display:
+      material: red stain glass pane 
+      name: '点击&b退出'  
+      lore:
+      - '每日任务' 
+      - '每日只能做4个哦'   
+    actions:
+      all:            
+        - 'close'
+        - 'tell: &7点击&a木棍&7可以再次打开&e菜单'
+
+  #设置计分板tasklimit，每人每天只能做4个
+  #questscrolls give TASKNAME @a[name=%player_name%,scores={tasklimit=1..4}]
+  
+  #一键领取任务:
+  'M':
+    update: 15
+    display:
+      material: nether_star
+      name: '&a一键领取四个任务'
+      lore: 
+      - '&c&l注意:&b该任务n中选4'
+      - '&b难度&c不确定，&6全部完成才能领取奖励'
+      - '&b但&c报酬&b丰厚'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:4"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:4'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 一键领取 %player_name%'
+      
+
+  #A类任务——打怪升级   
+  #任务1（A1）
+  'A1':
+    display:
+      material: creeper_spawn_egg
+      name: '&b打怪升级&61'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 打怪升级 %player_name%'
+  
+  #任务2（A2）
+  'A2':
+    display:
+      material: zombie_spawn_egg
+      name: '&b打怪升级&62'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 打怪升级 %player_name%'
+    
+  #任务3（A3）
+  'A3':
+    display:
+      material: spider_spawn_egg
+      name: '&b打怪升级&63'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 打怪升级 %player_name%'
+
+  #B类任务——破坏放置
+  #任务4 (B1)
+  'B1':
+    display:
+      material: cobblestone
+      name: '&b破坏放置&61'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 破坏放置 %player_name%'
+  
+  #任务5 (B2)
+  'B2':
+    display:
+      material: stone
+      name: '&b破坏放置&62'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 破坏放置 %player_name%'
+
+  #任务6 (B3)
+  'B3':
+    display:
+      material: bedrock
+      name: '&b破坏放置&63'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 破坏放置 %player_name%'
+
+  #C类任务——休闲养生
+  #任务7 (C1)
+  'C1':
+    display:
+      material: cod
+      name: '&b休闲养生&61'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 休闲养生 %player_name%'
+
+  #任务8 (C2)
+  'C2':
+    display:
+      material: bread
+      name: '&b休闲养生&62'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 休闲养生 %player_name%'
+
+  #任务9 (C3)
+  'C3':
+    display:
+      material: cookie
+      name: '&b休闲养生&63'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 休闲养生 %player_name%'
+
+  #D类任务——获得强化
+  #任务10(D1)
+  'D1':
+    display:
+      material: paper
+      name: '&b获得强化&61'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 获得强化 %player_name%'
+
+  #任务11(D2)
+  'D2':
+    display:
+      material: spectral arrow
+      name: '&b获得强化&62'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 获得强化 %player_name%'
+
+  #任务12(D3)
+  'D3':
+    display:
+      material: enchanting_table
+      name: '&b获得强化&63'
+      lore:
+      - '&r今天会是什么呢'
+      glow: true
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player,vars("mat:IRON_NUGGET,name:&b任务点,amt:1"))'
+          actions:
+            - 'take-item: material:IRON_NUGGET,name:&b任务点,amount:1'
+            - 'tell: 任务领取成功'
+            - 'console: questscrolls give 获得强化 %player_name%'
+
+  
+  
+
+
+  

@@ -1,0 +1,119 @@
+ #银行菜单标题
+Title: '&e&l银行&b&l——取钱'
+#绑定
+Bindings:
+  #绑定命令
+  Commands:
+    - 'withdraw'
+  #绑定开启菜单的物品
+
+
+#菜单样子（箱子菜单）
+Shape:
+- 'X#######X'
+- '#A B C D#'
+- 'Z#######Z'
+
+#开关菜单时的音效
+Events:
+  Open:
+    - 'sound: BLOCK_IRON_DOOR_OPEN-1-2'
+  Close:
+    - 'sound: BLOCK_IRON_DOOR_CLOSE-1-2'
+
+Buttons:
+  #边框
+  '#':
+    display:
+      material: gray stain glass pane
+      name: '&e&l我是&a&l边框'  
+      lore: 
+      - '点击&c红色&r退出'
+      - '按&aECS&7退出或者按&aE'
+  
+  #退出
+  'X':
+    display:
+      material: red stain glass pane 
+      name: '点击&b退出'      
+    actions:
+      all:            
+        - 'close'
+        - 'tell: &7点击&a木棍&7可以再次打开&e菜单'
+
+  #返回主菜单
+  'Z':
+    display:
+      mats: green stain glass pane
+      name: '&a返回主菜单'
+      lore: '点击&b返回'
+    actions:
+      all:
+        - 'sound: BLOCK_IRON_DOOR_OPEN-1-2'
+        - 'trplugins.menu: menu'
+  
+  #取1块钱
+  'A':
+    display:
+      material: iron_nugget
+      amt: 1
+      name: '&7取钱'
+      lore:
+      - '&b取1块'
+    actions:
+      all:
+        actions:
+          - 'sound: ENTITY_CAT_AMBIENT-1-1'
+          - 'console: give @a[name=%player_name%,scores={money=1..999999999}] gold_nugget{display:{Name:"[{\"text\":\"金币\",\"color\":\"gold\"}]"}} 1'
+          - 'console: scoreboard players remove %player_name% money 1'
+          - 'console: scoreboard players set @a[name=%player_name%,scores={money=-10000..0}] money 0'        
+          #或者补充一个循环命令方块，让金币小于0的设置为0
+
+  #取8块钱
+  'B':
+    display:
+      material: iron_nugget
+      amt: 8
+      name: '&7取钱'
+      lore:
+      - '&b取8块'
+    actions:
+      all:
+        actions:
+          - 'sound: ENTITY_CAT_AMBIENT-1-1'
+          - 'console: give @a[name=%player_name%,scores={money=8..999999999}] gold_nugget{display:{Name:"[{\"text\":\"金币\",\"color\":\"gold\"}]"}} 8'
+          - 'console: scoreboard players remove @a[name=%player_name%,scores={money=8..999999999}] money 8'
+          - 'console: scoreboard players set @a[name=%player_name%,scores={money=-10000..0}] money 0'
+          
+  #取32块钱
+  'C':
+    display:
+      material: iron_nugget
+      amt: 32
+      name: '&7取钱'
+      lore:
+      - '&b取32块'
+    actions:
+      all:
+        actions:
+          - 'sound: ENTITY_CAT_AMBIENT-1-1'
+          - 'console: give @a[name=%player_name%,scores={money=32..999999999}] gold_nugget{display:{Name:"[{\"text\":\"金币\",\"color\":\"gold\"}]"}} 32'
+          - 'console: scoreboard players remove @a[name=%player_name%,scores={money=32..999999999}] money 32'
+          - 'console: scoreboard players set @a[name=%player_name%,scores={money=-10000..0}] money 0'
+
+  #取64块钱
+  'D':
+    display:
+      material: iron_nugget
+      amt: 64
+      name: '&7取钱'
+      lore:
+      - '&b取64块'
+    actions:
+      all:
+        actions:
+          - 'sound: ENTITY_CAT_AMBIENT-1-1'
+          - 'console: give @a[name=%player_name%,scores={money=64..999999999}] gold_nugget{display:{Name:"[{\"text\":\"金币\",\"color\":\"gold\"}]"}} 64'
+          - 'console: scoreboard players remove @a[name=%player_name%,scores={money=64..999999999}] money 64'
+          - 'console: scoreboard players set @a[name=%player_name%,scores={money=-10000..0}] money 0'
+  

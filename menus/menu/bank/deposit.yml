@@ -1,0 +1,112 @@
+#银行菜单标题
+Title: '&e&l银行&b&l——存钱'
+#绑定
+Bindings:
+  #绑定命令
+  Commands:
+    - 'deposit'
+  #绑定开启菜单的物品
+
+#菜单样子（箱子菜单）
+Shape:
+- 'X#######X'
+- '#A B C D#'
+- 'Z#######Z'
+
+#开关菜单时的音效
+Events:
+  Open:
+    - 'sound: BLOCK_IRON_DOOR_OPEN-1-2'
+  Close:
+    - 'sound: BLOCK_IRON_DOOR_CLOSE-1-2'
+
+Buttons:
+  #不放东西的玻璃板（绿）
+  '#':
+    display:
+      material: gray stain glass pane
+      name: '&e&l我是&a&l边框'  
+      lore: 
+      - '点击&c红色&r退出'
+      - '按&aECS&7退出或者按&aE'
+  #退出
+  'X':
+    display:
+      material: red stain glass pane 
+      name: '点击&b退出'      
+    actions:
+      all:            
+        - 'close'
+        - 'tell: &7点击&a木棍&7可以再次打开&e菜单'
+  
+  #返回主菜单
+  'Z':
+    display:
+      mats: green stain glass pane
+      name: '&a返回主菜单'
+      lore: '点击&b返回'
+    actions:
+      all:
+        - 'sound: BLOCK_IRON_DOOR_OPEN-1-2'
+        - 'trplugins.menu: menu'
+
+  #存1块钱
+  'A':
+    display:
+      material: iron_nugget
+      amt: 1
+      name: '&7存钱'
+      lore: 
+      - '&b存1块'
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player, vars("mat:GOLD_NUGGET,name:&6金币,amt:1"))'
+          actions:
+            - 'take-item: material:GOLD_NUGGET,name:&6金币,amount:1'
+            - 'console: scoreboard players add %player_name% money 1'
+            - 'tell: &a存钱成功'
+  #存8块钱
+  'B':
+    display:
+      material: iron_nugget
+      amt: 8
+      name: '&7存钱'
+      lore: 
+      - '&b存8块'
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player, vars("mat:gold_nugget,name:&6金币,amt:8"))'
+          actions:
+            - 'take-item: material:GOLD_NUGGET,name:&6金币,amount:8'
+            - 'console: scoreboard players add %player_name% money 8'
+            - 'tell: &a存钱成功'
+  #存32块钱
+  'C':
+    display:
+      material: iron_nugget
+      amt: 32
+      name: '&7存钱'
+      lore: 
+      - '&b存32块'
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player, vars("mat:gold_nugget,name:&6金币,amt:32"))'
+          actions:
+            - 'take-item: material:GOLD_NUGGET,name:&6金币,amount:32'
+            - 'console: scoreboard players add %player_name% money 32'
+            - 'tell: &a存钱成功'
+  #存64块钱
+  'D':
+    display:
+      material: iron_nugget
+      amt: 64
+      name: '&7存钱'
+      lore: 
+      - '&b存64块'
+    actions:
+      all:
+        - condition: 'js: utils.hasItem(player, vars("mat:gold_nugget,name:&6金币,amt:64"))'
+          actions:
+            - 'take-item: material:GOLD_NUGGET,name:&6金币,amount:64'
+            - 'console: scoreboard players add %player_name% money 64'
+            - 'tell: &a存钱成功'
